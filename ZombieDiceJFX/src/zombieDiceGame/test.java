@@ -8,6 +8,11 @@ public class test {
 		GreenDice g = new GreenDice();
 		YellowDice j = new YellowDice();
 		c.throwDice();
+		Player Axel = new Player("Moi");
+		Player Moch = new Player("Lui");
+		Game t = new Game(Difficulty.NORMAL.toString(),Axel, Moch);
+		t.jeterLesDes();
+		t.finirTour();
 	}
 
 }

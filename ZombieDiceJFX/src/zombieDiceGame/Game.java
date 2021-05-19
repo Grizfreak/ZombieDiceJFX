@@ -15,19 +15,31 @@ public class Game {
 	private int fusils_en_cours;
 	private int cerveaux_en_cours;
 	private ArrayList<Dice> des_empreintes;
-	private int nbPlayers;
+	private int nbPlayers=0;
 	private Player currentPlayer;
 
-	public Game(int nbPlayers, String difficulty,Player j1,Player j2, Player j3, Player j4) {
+	public Game(String difficulty,Player j1,Player j2, Player j3, Player j4) {
 		tas = new Gobelet(difficulty);
 		des_empreintes= new ArrayList<Dice>();
 		this.difficulty=difficulty;
-		this.nbPlayers=nbPlayers;
 		this.j1=j1;
+		if(j1 !=null)nbPlayers++;
 		this.j2=j2;
+		if(j2 !=null)nbPlayers++;
 		this.j3=j3;
+		if(j3 !=null)nbPlayers++;
 		this.j4=j4;
+		if(j4 !=null)nbPlayers++;
 		currentPlayer=j1;
+	}
+	public Game(String difficulty,Player j1) {
+		this(difficulty,j1,null,null,null);
+	}
+	public Game(String difficulty,Player j1,Player j2) {
+		this(difficulty,j1,j2,null,null);
+	}
+	public Game(String difficulty,Player j1,Player j2, Player j3) {
+		this(difficulty,j1,j2,j3,null);
 	}
 
 

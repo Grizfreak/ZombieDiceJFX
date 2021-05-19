@@ -9,6 +9,7 @@ public class Gobelet {
 	//TODO add difficulty
 	public Gobelet(String difficult) {
 		int i;
+		unusable_dices = new ArrayList<Dice>();
 		dices = new ArrayList<Dice>();
 		if(difficult.equals(Difficulty.EASY.toString())) {
 			for(i=0;i<8;i++) {
