@@ -32,9 +32,6 @@ public class Game {
 		if(j4 !=null)nbPlayers++;
 		currentPlayer=j1;
 	}
-	public Game(String difficulty,Player j1) {
-		this(difficulty,j1,null,null,null);
-	}
 	public Game(String difficulty,Player j1,Player j2) {
 		this(difficulty,j1,j2,null,null);
 	}

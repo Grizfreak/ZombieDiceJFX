@@ -1,16 +1,23 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.Main;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import zombieDiceGame.Difficulty;
 
 public class MenuController implements Initializable{
 	@FXML RadioButton facile;
@@ -26,6 +33,12 @@ public class MenuController implements Initializable{
 	@FXML TextField j2name;
 	@FXML TextField j3name;
 	@FXML TextField j4name;
+	static public String difficulty;
+	static int nbPlayers;
+	static String namej1;
+	static String namej2;
+	static String namej3;
+	static String namej4;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -36,19 +49,16 @@ public class MenuController implements Initializable{
 		facile.setSelected(true);
 		normal.setSelected(false);
 		difficile.setSelected(false);
-		changeLaunchState();
 	}
 	@FXML public void setNormal(){
 		facile.setSelected(false);
 		normal.setSelected(true);
 		difficile.setSelected(false);
-		changeLaunchState();
 	}
 	@FXML public void setDifficile(){
 		facile.setSelected(false);
 		normal.setSelected(false);
 		difficile.setSelected(true);
-		changeLaunchState();
 	}
 
 	@FXML public void displayPlayerNames() {
@@ -62,7 +72,6 @@ public class MenuController implements Initializable{
 			j2name.setVisible(true);
 			j3.setVisible(true);
 			j3name.setVisible(true);
-			changeLaunchState();
 			break;
 		case 4 :
 			initTextField();
@@ -74,7 +83,6 @@ public class MenuController implements Initializable{
 			j3name.setVisible(true);
 			j4.setVisible(true);
 			j4name.setVisible(true);
-			changeLaunchState();
 			break;
 		default :
 			initTextField();
@@ -82,7 +90,6 @@ public class MenuController implements Initializable{
 			j1name.setVisible(true);
 			j2.setVisible(true);
 			j2name.setVisible(true);
-			changeLaunchState();
 			break;
 		}
 	}
@@ -97,7 +104,49 @@ public class MenuController implements Initializable{
 		j4name.setVisible(false);
 	}
 
-	@FXML private void changeLaunchState() {
-		
+	@FXML private void launch() throws IOException {
+		if(facile.isSelected())difficulty=Difficulty.EASY.toString();
+		if(normal.isSelected())difficulty=Difficulty.NORMAL.toString();
+		if(difficile.isSelected())difficulty=Difficulty.HARD.toString();
+		nbPlayers=(int)nbJoueurs.getValue();
+		namej1=j1name.getText();
+		namej2=j2name.getText();
+		namej3=j3name.getText();
+		namej4=j4name.getText();
+		Parent root = FXMLLoader.load(getClass().getResource("/view/GamePage.fxml"));
+		Stage thisStage = (Stage) Main.actualRoot.getScene().getWindow();
+		Main.actualRoot=root;
+		Scene next = new Scene(root);
+		thisStage.setScene(next);
+	}
+
+
+	public String getDifficulty() {
+		return difficulty;
+	}
+
+
+	public int getNbPlayers() {
+		return nbPlayers;
+	}
+
+
+	public String getNamej1() {
+		return namej1;
+	}
+
+
+	public String getNamej2() {
+		return namej2;
+	}
+
+
+	public String getNamej3() {
+		return namej3;
+	}
+
+
+	public String getNamej4() {
+		return namej4;
 	}
 }
