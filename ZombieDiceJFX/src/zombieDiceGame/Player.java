@@ -10,4 +10,9 @@ public class Player {
 		cerveaux=0;
 		fusil=0;
 	}
+
+	public void addCerveaux(int cerveaux) {
+		// TODO Auto-generated method stub
+		this.cerveaux+=cerveaux;
+	}
 }
