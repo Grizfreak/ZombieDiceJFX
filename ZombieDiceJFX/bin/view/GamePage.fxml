@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
+   <children>
+      <Label fx:id="firstlabel" layoutX="14.0" layoutY="46.0" text="J2" />
+      <Label fx:id="secondlabel" layoutX="14.0" layoutY="76.0" text="J3" visible="false" />
+      <Label fx:id="thirdlabel" layoutX="14.0" layoutY="105.0" text="J4" visible="false" />
+      <TextField fx:id="first" disable="true" editable="false" layoutX="34.0" layoutY="42.0" prefHeight="25.0" prefWidth="60.0" />
+      <TextField fx:id="second" disable="true" editable="false" layoutX="34.0" layoutY="72.0" prefHeight="25.0" prefWidth="60.0" visible="false" />
+      <TextField fx:id="third" disable="true" editable="false" layoutX="34.0" layoutY="101.0" prefHeight="25.0" prefWidth="60.0" visible="false" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="367.0" prefHeight="80.0" prefWidth="124.0" text="J1" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <Button layoutX="155.0" layoutY="386.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="88.0" text="Jouer" />
+      <Button layoutX="254.0" layoutY="386.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="88.0" text="Passer" />
+      <Canvas height="91.0" layoutX="154.0" layoutY="269.0" width="470.0" />
+      <TextField fx:id="current" disable="true" editable="false" layoutX="48.0" layoutY="339.0" prefHeight="43.0" prefWidth="74.0" />
+      <ImageView fitHeight="43.0" fitWidth="45.0" layoutX="668.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="43.0" fitWidth="45.0" layoutX="668.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="43.0" fitWidth="45.0" layoutX="668.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="43.0" fitWidth="32.0" layoutX="9.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../ZombieDicePic/cerveau.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

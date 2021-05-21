@@ -5,10 +5,18 @@ import java.util.ResourceBundle;
 import zombieDiceGame.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class GameController implements Initializable{
 	@FXML private TextField salut;
+	@FXML private TextField current;
+	@FXML private TextField first;
+	@FXML private Label firstlabel;
+	@FXML private Label secondlabel;
+	@FXML private Label thirdlabel;
+	@FXML private TextField second;
+	@FXML private TextField third;
 	private String difficulty;
 	private int nbPlayers;
 	private String namej1;
@@ -41,6 +49,18 @@ public class GameController implements Initializable{
 		else {
 			Game game = new Game(difficulty, j1, j2, j3, j4);
 		}
+		if(nbPlayers>=3) {
+			second.setVisible(true);
+			secondlabel.setVisible(true);
+			second.setText(String.valueOf(j3.getCerveaux()));
+		}
+		if(nbPlayers>=4) {
+			third.setVisible(true);
+			thirdlabel.setVisible(true);
+			third.setText(String.valueOf(j4.getCerveaux()));
+		}
+		current.setText(String.valueOf(j1.getCerveaux()));
+		first.setText(String.valueOf(j2.getCerveaux()));	
 	}
 
 }

@@ -13,4 +13,8 @@ public class Player {
 		// TODO Auto-generated method stub
 		this.cerveaux+=cerveaux;
 	}
+
+	public int getCerveaux() {
+		return cerveaux;
+	}
 }
