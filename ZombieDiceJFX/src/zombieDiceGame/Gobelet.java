@@ -3,7 +3,7 @@ package zombieDiceGame;
 import java.util.ArrayList;
 
 public class Gobelet {
-	public static int nb_dice=0;
+	static int nb_dice=0;
 	public static final int FINAL_NB_DICE=13;
 	private ArrayList<Dice> dices;
 	private ArrayList<Dice> unusable_dices;

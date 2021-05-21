@@ -17,6 +17,8 @@ import javafx.scene.image.ImageView;
 public class GameController implements Initializable{
 	@FXML private TextField salut;
 	@FXML private TextField current;
+	@FXML private Label currentText;
+	@FXML private TextField currentbrains;
 	@FXML private TextField first;
 	@FXML private Label firstlabel;
 	@FXML private Label secondlabel;
@@ -39,6 +41,7 @@ public class GameController implements Initializable{
 	private Player j3;
 	private Player j4;
 	private Game game;
+	public static boolean isDead=false;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -62,14 +65,18 @@ public class GameController implements Initializable{
 		else {
 			game = new Game(difficulty, j1, j2, j3, j4);
 		}
+		currentText.setText(game.getCurrentPlayer().toString());
+		firstlabel.setText(j2.toString());
 		if(nbPlayers>=3) {
 			second.setVisible(true);
 			secondlabel.setVisible(true);
+			secondlabel.setText(j3.toString());
 			second.setText(String.valueOf(j3.getCerveaux()));
 		}
 		if(nbPlayers>=4) {
 			third.setVisible(true);
 			thirdlabel.setVisible(true);
+			thirdlabel.setText(j4.toString());
 			third.setText(String.valueOf(j4.getCerveaux()));
 		}
 		gc=canvas.getGraphicsContext2D();
@@ -83,6 +90,9 @@ public class GameController implements Initializable{
 	@FXML public void playturn() {
 		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		game.jeterLesDes();
+		if(isDead) {
+			passerTour();
+		}
 		Object[] dejete=game.getLaunchedDices();
 		Dice d1 = (Dice) dejete[0];
 		Dice d2 = (Dice) dejete[1];
@@ -96,24 +106,54 @@ public class GameController implements Initializable{
 		gc.drawImage(new Image(path),0,0, 100, 100);
 		gc.drawImage(new Image(path2), 150, 0, 100, 100);
 		gc.drawImage(new Image(path3), 300, 0, 100, 100);
-		
 		setCerveaux();
 		setFusil();
-		if(game.getFusils_en_cours()==3) {
-			passerTour();
-		}
+
 		
 	}
 	@FXML private void passerTour() {
-		
+		isDead=false;
+		if(game.getCurrentPlayer().equals(j1)) {
+			exchange(game.getCurrentPlayer(),j2);
+			game.finirTour();
+			return;
+		}
+		if(game.getCurrentPlayer().equals(j2)) {
+			
+			if(nbPlayers>=3)exchange(game.getCurrentPlayer(),j3);
+			else exchange(game.getCurrentPlayer(),j1);
+			game.finirTour();
+			return;
+		}
+		if(game.getCurrentPlayer().equals(j3)) {
+			
+			if(nbPlayers>=4)exchange(game.getCurrentPlayer(),j4);
+			else exchange(game.getCurrentPlayer(),j1);
+			game.finirTour();
+			return;
+		}
+		if(game.getCurrentPlayer().equals(j4)) {
+			exchange(game.getCurrentPlayer(),j1);
+			game.finirTour();
+			return;
+		}
 	}
 
 	private void setCerveaux() {
-		// TODO Auto-generated method stub
-		current.setText(String.valueOf(game.getCerveaux_en_cours()));
+		currentbrains.setText(String.valueOf(game.getCerveaux_en_cours()));
 	}
 	
 	private void exchange(Player p1, Player p2) {
+		currentText.setText(p2.toString());
+		if(currentText.getText().equals(firstlabel.getText())) {
+			firstlabel.setText(p1.toString());
+		}
+		else if (currentText.getText().equals(secondlabel.getText())) {
+			secondlabel.setText(p1.toString());
+		}
+		else {
+			thirdlabel.setText(p1.toString());
+		}
 		
 	}
 
@@ -131,10 +171,6 @@ public class GameController implements Initializable{
 		if(game.getFusils_en_cours()==3) {
 			third_pump.setImage(new Image("file:./src/ZombieDicePic/shotgun.png"));
 		}
-	}
-
-	@FXML public void pass() {
-		
 	}
 	public String setDe(Dice d, String f) {
 		String path;

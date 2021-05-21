@@ -20,7 +20,7 @@
       <RadioButton fx:id="normal" layoutX="21.0" layoutY="170.0" mnemonicParsing="false" onAction="#setNormal" text="Moyen" />
       <RadioButton fx:id="difficile" layoutX="21.0" layoutY="203.0" mnemonicParsing="false" onAction="#setDifficile" text="Difficile" />
       <Slider fx:id="nbJoueurs" blockIncrement="25.0" layoutX="563.0" layoutY="155.0" majorTickUnit="1.0" max="4.0" min="2.0" minorTickCount="0" onMouseReleased="#displayPlayerNames" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
-      <Label layoutX="546.0" layoutY="107.0" text="Veuillez choisir le nombre de joueurs" />
+      <Label layoutX="524.0" layoutY="107.0" text="Veuillez choisir le nombre de joueurs" />
       <Button fx:id="launch" layoutX="302.0" layoutY="333.0" mnemonicParsing="false" onAction="#launch" prefHeight="75.0" prefWidth="152.0" text="Démarrer" />
       <Label fx:id="j1" layoutX="515.0" layoutY="256.0" text="J1" />
       <Label fx:id="j2" layoutX="515.0" layoutY="290.0" text="J2" />

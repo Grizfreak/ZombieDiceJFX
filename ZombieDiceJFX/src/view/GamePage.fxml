@@ -17,22 +17,23 @@
       <TextField fx:id="first" disable="true" editable="false" layoutX="34.0" layoutY="42.0" prefHeight="25.0" prefWidth="60.0" />
       <TextField fx:id="second" disable="true" editable="false" layoutX="34.0" layoutY="72.0" prefHeight="25.0" prefWidth="60.0" visible="false" />
       <TextField fx:id="third" disable="true" editable="false" layoutX="34.0" layoutY="101.0" prefHeight="25.0" prefWidth="60.0" visible="false" />
-      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="367.0" prefHeight="80.0" prefWidth="124.0" text="J1" textAlignment="CENTER" wrapText="true">
+      <Label fx:id="currentText" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="367.0" prefHeight="80.0" prefWidth="124.0" text="J1" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
       <Button layoutX="155.0" layoutY="386.0" mnemonicParsing="false" onAction="#playturn" prefHeight="43.0" prefWidth="88.0" text="Jouer" />
-      <Button layoutX="254.0" layoutY="386.0" mnemonicParsing="false" onAction="#pass" prefHeight="43.0" prefWidth="88.0" text="Passer" />
+      <Button layoutX="254.0" layoutY="386.0" mnemonicParsing="false" onAction="#passerTour" prefHeight="43.0" prefWidth="88.0" text="Passer" />
       <Canvas fx:id="canvas" height="100.0" layoutX="154.0" layoutY="269.0" width="470.0" />
       <TextField fx:id="current" disable="true" editable="false" layoutX="48.0" layoutY="339.0" prefHeight="43.0" prefWidth="74.0" />
       <ImageView fx:id="first_pump" fitHeight="43.0" fitWidth="45.0" layoutX="668.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="second_pump" fitHeight="43.0" fitWidth="45.0" layoutX="668.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="third_pump" fitHeight="43.0" fitWidth="45.0" layoutX="668.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fitHeight="43.0" fitWidth="32.0" layoutX="9.0" layoutY="345.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="43.0" fitWidth="32.0" layoutX="616.0" layoutY="40.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../ZombieDicePic/cerveau.png" />
          </image>
       </ImageView>
+      <TextField fx:id="currentbrains" disable="true" editable="false" layoutX="654.0" layoutY="34.0" prefHeight="43.0" prefWidth="74.0" />
    </children>
 </AnchorPane>

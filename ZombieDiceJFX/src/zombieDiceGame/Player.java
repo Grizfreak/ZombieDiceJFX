@@ -17,4 +17,9 @@ public class Player {
 	public int getCerveaux() {
 		return cerveaux;
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 }

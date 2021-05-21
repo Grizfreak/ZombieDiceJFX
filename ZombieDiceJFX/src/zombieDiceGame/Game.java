@@ -3,6 +3,7 @@ package zombieDiceGame;
 import java.util.ArrayList;
 import java.util.Random;
 
+import controller.GameController;
 import zombieDiceGame.Dice.symbole;
 
 public class Game {
@@ -15,6 +16,7 @@ public class Game {
 	private int fusils_en_cours;
 	private int cerveaux_en_cours;
 	private ArrayList<Dice> des_empreintes;
+	private Gobelet copytas;
 	private int nbPlayers=0;
 	public Player getCurrentPlayer() {
 		return currentPlayer;
@@ -52,8 +54,11 @@ public class Game {
 
 	public void jeterLesDes() {
 		Random rando = new Random();
-		if(tas.nb_dice+des_empreintes.size()<3) {
-			System.out.println("Impossible de jouer");
+		System.out.println(tas.size()+des_empreintes.size());
+		System.out.println(tas.size()+des_empreintes.size()<3);
+		if(tas.size()+des_empreintes.size()<3) {
+			System.out.println("Impossible de jouer CAUSE : plus de dés");
+			finirTour();
 			return;
 		}
 		switch(des_empreintes.size()) {
@@ -134,9 +139,7 @@ public class Game {
 		}
 		tas.afficheGobelet();
 		if(fusils_en_cours>=3) {
-			finirTour();
-		}
-		if(des_empreintes.size()+tas.size()<3) {
+			System.out.println("Pompe mort");
 			finirTour();
 		}
 		
@@ -160,25 +163,34 @@ public class Game {
 	}
 
 	public void finirTour() {
-		//TODO gérer multijoueurs
+		//TODO FAIRE MARCHER LA FONCTION
 		System.out.println("FIN DU TOUR DU "+currentPlayer);
 		for(Dice dice : des_empreintes) {
 			tas.addDice(dice);
 		}
+		tas.reinitialize();
 		if(fusils_en_cours==3) {
 			cerveaux_en_cours=0;
 			fusils_en_cours=0;
+			GameController.isDead=true;
+			return;
 		}
 		currentPlayer.addCerveaux(cerveaux_en_cours);
 		if(currentPlayer.equals(j1) && j2!=null) {
+			cerveaux_en_cours=0;
+			fusils_en_cours=0;
 			currentPlayer=j2;
 			return;
 		}
 		if(currentPlayer.equals(j2) && j3!=null) {
+			cerveaux_en_cours=0;
+			fusils_en_cours=0;
 			currentPlayer=j3;
 			return;
 		}
 		if(currentPlayer.equals(j3) && j4!=null) {
+			cerveaux_en_cours=0;
+			fusils_en_cours=0;
 			currentPlayer=j4;
 			return;
 		}
