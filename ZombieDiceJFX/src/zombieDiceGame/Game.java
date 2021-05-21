@@ -16,6 +16,10 @@ public class Game {
 	private int cerveaux_en_cours;
 	private ArrayList<Dice> des_empreintes;
 	private int nbPlayers=0;
+	public Player getCurrentPlayer() {
+		return currentPlayer;
+	}
+
 	private Player currentPlayer;
 	private Dice d1;
 	private Dice d2;
@@ -48,6 +52,10 @@ public class Game {
 
 	public void jeterLesDes() {
 		Random rando = new Random();
+		if(tas.nb_dice+des_empreintes.size()<3) {
+			System.out.println("Impossible de jouer");
+			return;
+		}
 		switch(des_empreintes.size()) {
 		case 1:
 			d1=des_empreintes.get(0);
@@ -132,6 +140,12 @@ public class Game {
 			finirTour();
 		}
 		
+	}
+	public int getFusils_en_cours() {
+		return fusils_en_cours;
+	}
+	public int getCerveaux_en_cours() {
+		return cerveaux_en_cours;
 	}
 	public Object[] getLaunchedDices() {
 		Object obj[]= new Object[6];
