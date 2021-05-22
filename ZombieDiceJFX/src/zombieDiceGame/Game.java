@@ -54,8 +54,6 @@ public class Game {
 
 	public void jeterLesDes() {
 		Random rando = new Random();
-		System.out.println(tas.size()+des_empreintes.size());
-		System.out.println(tas.size()+des_empreintes.size()<3);
 		if(tas.size()+des_empreintes.size()<3) {
 			System.out.println("Impossible de jouer CAUSE : plus de dés");
 			finirTour();
@@ -137,7 +135,6 @@ public class Game {
 			tas.removeDice(d3);
 			des_empreintes.add(d3);
 		}
-		tas.afficheGobelet();
 		if(fusils_en_cours>=3) {
 			System.out.println("Pompe mort");
 			finirTour();
@@ -164,12 +161,18 @@ public class Game {
 
 	public void finirTour() {
 		//TODO FAIRE MARCHER LA FONCTION
+		tas.reinitialize();
 		System.out.println("FIN DU TOUR DU "+currentPlayer);
 		for(Dice dice : des_empreintes) {
 			tas.addDice(dice);
 		}
-		tas.reinitialize();
-		if(fusils_en_cours==3) {
+		tas.afficheGobelet();
+		if(tas.size()+des_empreintes.size()<3) {
+			currentPlayer.addCerveaux(cerveaux_en_cours);
+			fusils_en_cours=0;
+			return;
+		}
+		if(fusils_en_cours>=3) {
 			cerveaux_en_cours=0;
 			fusils_en_cours=0;
 			GameController.isDead=true;
@@ -179,21 +182,24 @@ public class Game {
 		if(currentPlayer.equals(j1) && j2!=null) {
 			cerveaux_en_cours=0;
 			fusils_en_cours=0;
-			currentPlayer=j2;
+			//currentPlayer=j2;
 			return;
 		}
 		if(currentPlayer.equals(j2) && j3!=null) {
 			cerveaux_en_cours=0;
 			fusils_en_cours=0;
-			currentPlayer=j3;
+			//currentPlayer=j3;
 			return;
 		}
 		if(currentPlayer.equals(j3) && j4!=null) {
 			cerveaux_en_cours=0;
 			fusils_en_cours=0;
-			currentPlayer=j4;
+			//currentPlayer=j4;
 			return;
 		}
 		currentPlayer=j1;
+	}
+	public void setCurrentPlayer(Player currentPlayer) {
+		this.currentPlayer = currentPlayer;
 	}
 }

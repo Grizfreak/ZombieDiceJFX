@@ -14,6 +14,7 @@ public class test {
 		t.jeterLesDes();
 		t.jeterLesDes();
 		t.jeterLesDes();
+		t.finirTour();
 		Object obj[] = t.getLaunchedDices();
 		for(int i=0;i<obj.length;i++) {
 			System.out.println(obj[i]);

@@ -86,12 +86,13 @@ public class GameController implements Initializable{
 		//first_pump.setImage(new Image(("file:src/ZombieDicePic/shotgun.png")));
 		//second_pump.setImage(new Image("file:./src/ZombieDicePic/shotgun.png"));
 	}
-	
+
 	@FXML public void playturn() {
 		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		game.jeterLesDes();
 		if(isDead) {
 			passerTour();
+			return;
 		}
 		Object[] dejete=game.getLaunchedDices();
 		Dice d1 = (Dice) dejete[0];
@@ -109,41 +110,19 @@ public class GameController implements Initializable{
 		setCerveaux();
 		setFusil();
 
-		
+
 	}
 	@FXML private void passerTour() {
-		isDead=false;
-		if(game.getCurrentPlayer().equals(j1)) {
-			exchange(game.getCurrentPlayer(),j2);
-			game.finirTour();
-			return;
-		}
-		if(game.getCurrentPlayer().equals(j2)) {
-			
-			if(nbPlayers>=3)exchange(game.getCurrentPlayer(),j3);
-			else exchange(game.getCurrentPlayer(),j1);
-			game.finirTour();
-			return;
-		}
-		if(game.getCurrentPlayer().equals(j3)) {
-			
-			if(nbPlayers>=4)exchange(game.getCurrentPlayer(),j4);
-			else exchange(game.getCurrentPlayer(),j1);
-			game.finirTour();
-			return;
-		}
-		if(game.getCurrentPlayer().equals(j4)) {
-			exchange(game.getCurrentPlayer(),j1);
-			game.finirTour();
-			return;
-		}
+		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
+		//TODO REFAIRE FONCTION
 	}
 
 	private void setCerveaux() {
 		currentbrains.setText(String.valueOf(game.getCerveaux_en_cours()));
 	}
-	
+
 	private void exchange(Player p1, Player p2) {
+		game.setCurrentPlayer(p2);
 		currentText.setText(p2.toString());
 		if(currentText.getText().equals(firstlabel.getText())) {
 			firstlabel.setText(p1.toString());
@@ -154,7 +133,7 @@ public class GameController implements Initializable{
 		else {
 			thirdlabel.setText(p1.toString());
 		}
-		
+
 	}
 
 	private void setFusil() {
@@ -208,7 +187,7 @@ public class GameController implements Initializable{
 			}
 		}
 		return path;
-		
+
 	}
 
 }
