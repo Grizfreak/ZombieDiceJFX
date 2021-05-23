@@ -33,6 +33,8 @@ public class GameController implements Initializable{
 	@FXML private Label yellowDice;
 	@FXML private Label redDice;
 	@FXML private Label alerte;
+	@FXML private Button pass;
+	@FXML private Button play;
 	@FXML private Button scores;
 	private GraphicsContext gc;
 	private String difficulty;
@@ -98,6 +100,15 @@ public class GameController implements Initializable{
 	}
 
 	@FXML public void playturn() {
+		if(nbPlayers==2) {
+			if(j1.isFinishing()||j2.isFinishing())game.getCurrentPlayer().setHasFinished(true);
+		}
+		else if(nbPlayers==3) {
+			if(j1.isFinishing()||j2.isFinishing()||j3.isFinishing())game.getCurrentPlayer().setHasFinished(true);
+		}
+		else {
+			if(j1.isFinishing()||j2.isFinishing()||j3.isFinishing()||j4.isFinishing())game.getCurrentPlayer().setHasFinished(true);
+		}
 		alerte.setVisible(false);
 		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		game.jeterLesDes();
@@ -127,6 +138,31 @@ public class GameController implements Initializable{
 
 	}
 	@FXML private void passerTour() {
+		if(nbPlayers==2) {
+			if(j1.isFinishing()||j2.isFinishing()) {
+				game.getCurrentPlayer().setHasFinished(true);
+				finJeu();
+				return;
+			}
+
+		}
+		else if(nbPlayers==3) {
+			if(j1.isFinishing()||j2.isFinishing()||j3.isFinishing()) {
+				game.getCurrentPlayer().setHasFinished(true);
+				finJeu();
+				return;
+			}
+
+		}
+		else {
+			if(j1.isFinishing()||j2.isFinishing()||j3.isFinishing()||j4.isFinishing()) {
+				game.getCurrentPlayer().setHasFinished(true);
+				finJeu();
+				return;
+			}
+
+		}
+
 		alerte.setVisible(false);
 		if(autoFinishedTurn)setAlerte();
 		else game.finirTour();
@@ -252,13 +288,15 @@ public class GameController implements Initializable{
 			return;
 		}
 		else {
-				alerte.setText("Votre tour s'est terminé car : vous avez obtenu 3 fusils ou plus");
-				return;
+			alerte.setText("Votre tour s'est terminé car : vous avez obtenu 3 fusils ou plus");
+			return;
 		}
 	}
-	
+
 	public void finJeu() {
-		
+		play.setDisable(true);
+		pass.setDisable(true);
+		scores.setVisible(true);
 	}
 
 }

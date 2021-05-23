@@ -19,7 +19,7 @@ public class Player {
 	public int getCerveaux() {
 		return cerveaux;
 	}
-	public boolean ifFinising() {
+	public boolean isFinishing() {
 		return hasFinished;
 	}
 	

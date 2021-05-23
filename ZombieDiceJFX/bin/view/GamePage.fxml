@@ -22,8 +22,8 @@
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
-      <Button layoutX="155.0" layoutY="386.0" mnemonicParsing="false" onAction="#playturn" prefHeight="43.0" prefWidth="88.0" text="Jouer" />
-      <Button layoutX="254.0" layoutY="386.0" mnemonicParsing="false" onAction="#passerTour" prefHeight="43.0" prefWidth="88.0" text="Passer" />
+      <Button fx:id="play" layoutX="155.0" layoutY="386.0" mnemonicParsing="false" onAction="#playturn" prefHeight="43.0" prefWidth="88.0" text="Jouer" />
+      <Button fx:id="pass" layoutX="254.0" layoutY="386.0" mnemonicParsing="false" onAction="#passerTour" prefHeight="43.0" prefWidth="88.0" text="Passer" />
       <Canvas fx:id="canvas" height="100.0" layoutX="154.0" layoutY="269.0" width="470.0" />
       <TextField fx:id="current" disable="true" editable="false" layoutX="48.0" layoutY="339.0" prefHeight="43.0" prefWidth="74.0" />
       <ImageView fx:id="first_pump" fitHeight="43.0" fitWidth="45.0" layoutX="668.0" layoutY="208.0" pickOnBounds="true" preserveRatio="true" />
