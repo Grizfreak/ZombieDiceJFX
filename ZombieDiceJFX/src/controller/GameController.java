@@ -1,11 +1,17 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import application.Main;
 import zombieDiceGame.*;
 import zombieDiceGame.Dice.symbole;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
@@ -13,6 +19,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class GameController implements Initializable{
 	@FXML private TextField salut;
@@ -38,15 +45,15 @@ public class GameController implements Initializable{
 	@FXML private Button scores;
 	private GraphicsContext gc;
 	private String difficulty;
-	private int nbPlayers;
+	public static int nbPlayers;
 	private String namej1;
 	private String namej2;
 	private String namej3;
 	private String namej4;
-	private Player j1;
-	private Player j2;
-	private Player j3;
-	private Player j4;
+	private static Player j1;
+	private static Player j2;
+	private static Player j3;
+	private static Player j4;
 	private Game game;
 	public static int nb_cerveaux_add=0;
 	public static boolean plusdedes=false;
@@ -185,7 +192,7 @@ public class GameController implements Initializable{
 			current.setText(String.valueOf(j3.getCerveaux()));
 			if(j3.getCerveaux()>=13)j3.setHasFinished(true);
 		}
-		else {
+		else if(currentText.getText().trim().equals(j4.toString())) {
 			current.setText(String.valueOf(j4.getCerveaux()));
 			if(j4.getCerveaux()>=13)j4.setHasFinished(true);
 		}
@@ -201,22 +208,22 @@ public class GameController implements Initializable{
 		String currentS=current.getText(),currentTextS=currentText.getText(),firstS=first.getText(),firstlabelS=firstlabel.getText(),secondS=second.getText(),secondlabelS=secondlabel.getText(),thirdS=third.getText(),thirdlabelS=thirdlabel.getText();
 		switch(nbPlayers) {
 		case 3: 
-			first.setText(currentS);
-			firstlabel.setText(currentTextS);
-			second.setText(firstS);
-			secondlabel.setText(firstlabelS);
-			current.setText(secondS);
-			currentText.setText(secondS);
+			first.setText(secondS);
+			firstlabel.setText(secondlabelS);
+			second.setText(currentS);
+			secondlabel.setText(currentTextS);
+			current.setText(firstS);
+			currentText.setText(firstlabelS);
 			break;
 		case 4:
-			first.setText(currentS);
-			firstlabel.setText(currentTextS);
-			second.setText(firstS);
-			secondlabel.setText(firstlabelS);
-			third.setText(secondS);
-			thirdlabel.setText(secondlabelS);
-			current.setText(thirdS);
-			currentText.setText(thirdlabelS);
+			first.setText(secondS);
+			firstlabel.setText(secondlabelS);
+			second.setText(thirdS);
+			secondlabel.setText(thirdlabelS);
+			third.setText(currentS);
+			thirdlabel.setText(currentTextS);
+			current.setText(firstS);
+			currentText.setText(firstlabelS);
 			break;
 		default:
 			current.setText(firstS);
@@ -297,6 +304,29 @@ public class GameController implements Initializable{
 		play.setDisable(true);
 		pass.setDisable(true);
 		scores.setVisible(true);
+	}
+	@FXML public void gotoStats() throws IOException {
+		Parent root = FXMLLoader.load(getClass().getResource("/view/ScorePage.fxml"));
+		Stage thisStage = (Stage) Main.actualRoot.getScene().getWindow();
+		Main.actualRoot=root;
+		Scene next = new Scene(root);
+		thisStage.setScene(next);
+	}
+
+	public static Player getJ1() {
+		return j1;
+	}
+
+	public static Player getJ2() {
+		return j2;
+	}
+
+	public static Player getJ3() {
+		return j3;
+	}
+
+	public static Player getJ4() {
+		return j4;
 	}
 
 }

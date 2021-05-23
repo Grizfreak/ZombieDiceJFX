@@ -42,6 +42,10 @@ public class MenuController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
+		namej1=null;
+		namej2=null;
+		namej3=null;
+		namej4=null;
 	}
 
 
@@ -118,35 +122,5 @@ public class MenuController implements Initializable{
 		Main.actualRoot=root;
 		Scene next = new Scene(root);
 		thisStage.setScene(next);
-	}
-
-
-	public String getDifficulty() {
-		return difficulty;
-	}
-
-
-	public int getNbPlayers() {
-		return nbPlayers;
-	}
-
-
-	public String getNamej1() {
-		return namej1;
-	}
-
-
-	public String getNamej2() {
-		return namej2;
-	}
-
-
-	public String getNamej3() {
-		return namej3;
-	}
-
-
-	public String getNamej4() {
-		return namej4;
 	}
 }

@@ -11,6 +11,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.GameController">
    <children>
+      <Button fx:id="scores" layoutX="606.0" layoutY="391.0" mnemonicParsing="false" onAction="#gotoStats" text="Passer aux scores" visible="false" />
       <Label fx:id="firstlabel" layoutX="14.0" layoutY="46.0" text="J2" />
       <Label fx:id="secondlabel" layoutX="14.0" layoutY="76.0" text="J3" visible="false" />
       <Label fx:id="thirdlabel" layoutX="14.0" layoutY="105.0" text="J4" visible="false" />
@@ -51,6 +52,5 @@
          </font>
       </Label>
       <Label fx:id="alerte" layoutX="424.0" layoutY="47.0" prefHeight="72.0" prefWidth="168.0" text="Votre tour s'est terminé car :" textFill="#fc0000" visible="false" wrapText="true" />
-      <Button fx:id="scores" layoutX="606.0" layoutY="391.0" mnemonicParsing="false" text="Passer aux scores" visible="false" />
    </children>
 </AnchorPane>
