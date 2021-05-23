@@ -16,7 +16,6 @@ public class Game {
 	private int fusils_en_cours;
 	private int cerveaux_en_cours;
 	private ArrayList<Dice> des_empreintes;
-	private Gobelet copytas;
 	private int nbPlayers=0;
 	public Player getCurrentPlayer() {
 		return currentPlayer;
@@ -54,18 +53,20 @@ public class Game {
 
 	public void jeterLesDes() {
 		Random rando = new Random();
-		if(tas.size()+des_empreintes.size()<3) {
+		System.out.println(currentPlayer.toString() + " est en train de jouer");
+		/*if(tas.size()+des_empreintes.size()<3) {
 			System.out.println("Impossible de jouer CAUSE : plus de dés");
+			plusdedes=true;
 			finirTour();
 			return;
-		}
+		}*/
 		switch(des_empreintes.size()) {
 		case 1:
 			d1=des_empreintes.get(0);
 			des_empreintes.remove(d1);
-			d2 = tas.getDice(rando.nextInt(Gobelet.nb_dice));
+			d2 = tas.getDice(rando.nextInt(tas.size()));
 			tas.removeDice(d2);
-			d3 = tas.getDice(rando.nextInt(Gobelet.nb_dice));
+			d3 = tas.getDice(rando.nextInt(tas.size()));
 			tas.addDice(d2);
 			break;
 		case 2:
@@ -73,7 +74,7 @@ public class Game {
 			d2=des_empreintes.get(1);
 			des_empreintes.remove(d1);
 			des_empreintes.remove(d2);
-			d3 = tas.getDice(rando.nextInt(Gobelet.nb_dice));
+			d3 = tas.getDice(rando.nextInt(tas.size()));
 			break;
 		case 3:
 			d1=des_empreintes.get(0);
@@ -84,11 +85,11 @@ public class Game {
 			des_empreintes.remove(d3);
 			break;
 		default:
-			d1 = tas.getDice(rando.nextInt(Gobelet.nb_dice));
+			d1 = tas.getDice(rando.nextInt(tas.size()));
 			tas.removeDice(d1);
-			d2 = tas.getDice(rando.nextInt(Gobelet.nb_dice));
+			d2 = tas.getDice(rando.nextInt(tas.size()));
 			tas.removeDice(d2);
-			d3 = tas.getDice(rando.nextInt(Gobelet.nb_dice));
+			d3 = tas.getDice(rando.nextInt(tas.size()));
 			tas.addDice(d1);
 			tas.addDice(d2);
 			break;
@@ -139,7 +140,13 @@ public class Game {
 			System.out.println("Pompe mort");
 			finirTour();
 		}
-		
+		if(tas.size()+des_empreintes.size()<3) {
+			System.out.println("Impossible de jouer CAUSE : plus de dés");
+			GameController.plusdedes=true;
+			finirTour();
+			return;
+		}
+
 	}
 	public int getFusils_en_cours() {
 		return fusils_en_cours;
@@ -156,50 +163,66 @@ public class Game {
 		obj[4]=face2;
 		obj[5]=face3;
 		return obj;
-		
+
 	}
 
 	public void finirTour() {
-		//TODO FAIRE MARCHER LA FONCTION
+		GameController.autoFinishedTurn=true;
 		tas.reinitialize();
 		System.out.println("FIN DU TOUR DU "+currentPlayer);
-		for(Dice dice : des_empreintes) {
-			tas.addDice(dice);
-		}
-		tas.afficheGobelet();
-		if(tas.size()+des_empreintes.size()<3) {
-			currentPlayer.addCerveaux(cerveaux_en_cours);
-			fusils_en_cours=0;
-			return;
-		}
 		if(fusils_en_cours>=3) {
-			cerveaux_en_cours=0;
 			fusils_en_cours=0;
-			GameController.isDead=true;
-			return;
+			cerveaux_en_cours=0;
 		}
+		GameController.nb_cerveaux_add=cerveaux_en_cours;
 		currentPlayer.addCerveaux(cerveaux_en_cours);
+		showStats();
+		cerveaux_en_cours=0;
+		fusils_en_cours=0;
 		if(currentPlayer.equals(j1) && j2!=null) {
-			cerveaux_en_cours=0;
-			fusils_en_cours=0;
-			//currentPlayer=j2;
+			currentPlayer=j2;
 			return;
 		}
 		if(currentPlayer.equals(j2) && j3!=null) {
-			cerveaux_en_cours=0;
-			fusils_en_cours=0;
-			//currentPlayer=j3;
+			currentPlayer=j3;
 			return;
 		}
 		if(currentPlayer.equals(j3) && j4!=null) {
-			cerveaux_en_cours=0;
-			fusils_en_cours=0;
-			//currentPlayer=j4;
+			currentPlayer=j4;
 			return;
 		}
 		currentPlayer=j1;
 	}
+
+	public void showStats() {
+		System.out.println("-------------------------------Résumé en fin de tour------------------------------------");
+		System.out.println(j1.toString() + " : " + j1.getCerveaux() + " cerveaux");
+		System.out.println(j2.toString() + " : " + j2.getCerveaux() + " cerveaux");
+		if(j3!=null)System.out.println(j3.toString() + " : " + j3.getCerveaux() + " cerveaux");
+		if(j4!=null)System.out.println(j4.toString() + " : " + j4.getCerveaux() + " cerveaux");
+	}
 	public void setCurrentPlayer(Player currentPlayer) {
 		this.currentPlayer = currentPlayer;
+	}
+	public int getGreenDice() {
+		int nbGreenDice=0;
+		for(int i=0;i<tas.size();i++) {
+			if(tas.getDice(i) instanceof GreenDice)nbGreenDice++;
+		}
+		return nbGreenDice;
+	}
+	public int getYellowDice() {
+		int nbYellowDice=0;
+		for(int i=0;i<tas.size();i++) {
+			if(tas.getDice(i) instanceof YellowDice)nbYellowDice++;
+		}
+		return nbYellowDice;
+	}
+	public int getRedDice() {
+		int nbRedDice=0;
+		for(int i=0;i<tas.size();i++) {
+			if(tas.getDice(i) instanceof RedDice)nbRedDice++;
+		}
+		return nbRedDice;
 	}
 }

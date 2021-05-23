@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 import zombieDiceGame.*;
@@ -9,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -29,6 +29,11 @@ public class GameController implements Initializable{
 	@FXML private ImageView second_pump;
 	@FXML private ImageView third_pump;
 	@FXML private Canvas canvas;
+	@FXML private Label greenDice;
+	@FXML private Label yellowDice;
+	@FXML private Label redDice;
+	@FXML private Label alerte;
+	@FXML private Button scores;
 	private GraphicsContext gc;
 	private String difficulty;
 	private int nbPlayers;
@@ -41,7 +46,9 @@ public class GameController implements Initializable{
 	private Player j3;
 	private Player j4;
 	private Game game;
-	public static boolean isDead=false;
+	public static int nb_cerveaux_add=0;
+	public static boolean plusdedes=false;
+	public static boolean autoFinishedTurn=false;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
@@ -65,6 +72,9 @@ public class GameController implements Initializable{
 		else {
 			game = new Game(difficulty, j1, j2, j3, j4);
 		}
+		greenDice.setText(String.valueOf(game.getGreenDice()));
+		yellowDice.setText(String.valueOf(game.getYellowDice()));
+		redDice.setText(String.valueOf(game.getRedDice()));
 		currentText.setText(game.getCurrentPlayer().toString());
 		firstlabel.setText(j2.toString());
 		if(nbPlayers>=3) {
@@ -88,9 +98,10 @@ public class GameController implements Initializable{
 	}
 
 	@FXML public void playturn() {
+		alerte.setVisible(false);
 		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
 		game.jeterLesDes();
-		if(isDead) {
+		if(autoFinishedTurn) {
 			passerTour();
 			return;
 		}
@@ -109,31 +120,75 @@ public class GameController implements Initializable{
 		gc.drawImage(new Image(path3), 300, 0, 100, 100);
 		setCerveaux();
 		setFusil();
+		greenDice.setText(String.valueOf(game.getGreenDice()));
+		yellowDice.setText(String.valueOf(game.getYellowDice()));
+		redDice.setText(String.valueOf(game.getRedDice()));
 
 
 	}
 	@FXML private void passerTour() {
+		alerte.setVisible(false);
+		if(autoFinishedTurn)setAlerte();
+		else game.finirTour();
+		setFusil();
+		setCerveaux();
+		greenDice.setText(String.valueOf(game.getGreenDice()));
+		yellowDice.setText(String.valueOf(game.getYellowDice()));
+		redDice.setText(String.valueOf(game.getRedDice()));
+		autoFinishedTurn=false;
 		gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-		//TODO REFAIRE FONCTION
+		if(currentText.getText().trim().equals(j1.toString())) {
+			current.setText(String.valueOf(j1.getCerveaux()));
+			if(j1.getCerveaux()>=13)j1.setHasFinished(true);
+		}
+		else if(currentText.getText().trim().equals(j2.toString())) {
+			current.setText(String.valueOf(j2.getCerveaux()));
+			if(j2.getCerveaux()>=13)j2.setHasFinished(true);
+		}
+		else if(currentText.getText().trim().equals(j3.toString())) {
+			current.setText(String.valueOf(j3.getCerveaux()));
+			if(j3.getCerveaux()>=13)j3.setHasFinished(true);
+		}
+		else {
+			current.setText(String.valueOf(j4.getCerveaux()));
+			if(j4.getCerveaux()>=13)j4.setHasFinished(true);
+		}
+		exchange();
 	}
 
 	private void setCerveaux() {
 		currentbrains.setText(String.valueOf(game.getCerveaux_en_cours()));
 	}
 
-	private void exchange(Player p1, Player p2) {
-		game.setCurrentPlayer(p2);
-		currentText.setText(p2.toString());
-		if(currentText.getText().equals(firstlabel.getText())) {
-			firstlabel.setText(p1.toString());
+	private void exchange() {
+		//current / currentText / first / firstlabel / second / secondlabel / third / thirdlabel
+		String currentS=current.getText(),currentTextS=currentText.getText(),firstS=first.getText(),firstlabelS=firstlabel.getText(),secondS=second.getText(),secondlabelS=secondlabel.getText(),thirdS=third.getText(),thirdlabelS=thirdlabel.getText();
+		switch(nbPlayers) {
+		case 3: 
+			first.setText(currentS);
+			firstlabel.setText(currentTextS);
+			second.setText(firstS);
+			secondlabel.setText(firstlabelS);
+			current.setText(secondS);
+			currentText.setText(secondS);
+			break;
+		case 4:
+			first.setText(currentS);
+			firstlabel.setText(currentTextS);
+			second.setText(firstS);
+			secondlabel.setText(firstlabelS);
+			third.setText(secondS);
+			thirdlabel.setText(secondlabelS);
+			current.setText(thirdS);
+			currentText.setText(thirdlabelS);
+			break;
+		default:
+			current.setText(firstS);
+			currentText.setText(firstlabelS);
+			first.setText(currentS);
+			firstlabel.setText(currentTextS);
+			break;
 		}
-		else if (currentText.getText().equals(secondlabel.getText())) {
-			secondlabel.setText(p1.toString());
-		}
-		else {
-			thirdlabel.setText(p1.toString());
-		}
-
 	}
 
 	private void setFusil() {
@@ -188,6 +243,22 @@ public class GameController implements Initializable{
 		}
 		return path;
 
+	}
+	public void setAlerte() {
+		alerte.setVisible(true);
+		if(plusdedes) {
+			plusdedes=false;
+			alerte.setText("Votre tour s'est terminé car : Il n'y a plus de dés jouables");
+			return;
+		}
+		else {
+				alerte.setText("Votre tour s'est terminé car : vous avez obtenu 3 fusils ou plus");
+				return;
+		}
+	}
+	
+	public void finJeu() {
+		
 	}
 
 }

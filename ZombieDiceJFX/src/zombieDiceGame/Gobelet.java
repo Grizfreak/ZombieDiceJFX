@@ -66,10 +66,11 @@ public class Gobelet {
 		}
 	}
 	public int size() {
-		return nb_dice;
+		return dices.size();
 	}
 	public void addDice(Dice dice) {
 		dices.add(dice);
+		unusable_dices.remove(dice);
 		nb_dice++;
 	}
 	public Dice getDice(int i) {
@@ -77,7 +78,7 @@ public class Gobelet {
 		
 	}
 	public void removeDice(Dice dice) {
-		unusable_dices.add(dice);
+		if(!unusable_dices.contains(dice))unusable_dices.add(dice);
 		dices.remove(dice);
 		nb_dice--;
 	}

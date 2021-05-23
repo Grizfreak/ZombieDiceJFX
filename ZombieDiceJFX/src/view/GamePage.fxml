@@ -14,9 +14,9 @@
       <Label fx:id="firstlabel" layoutX="14.0" layoutY="46.0" text="J2" />
       <Label fx:id="secondlabel" layoutX="14.0" layoutY="76.0" text="J3" visible="false" />
       <Label fx:id="thirdlabel" layoutX="14.0" layoutY="105.0" text="J4" visible="false" />
-      <TextField fx:id="first" disable="true" editable="false" layoutX="34.0" layoutY="42.0" prefHeight="25.0" prefWidth="60.0" />
-      <TextField fx:id="second" disable="true" editable="false" layoutX="34.0" layoutY="72.0" prefHeight="25.0" prefWidth="60.0" visible="false" />
-      <TextField fx:id="third" disable="true" editable="false" layoutX="34.0" layoutY="101.0" prefHeight="25.0" prefWidth="60.0" visible="false" />
+      <TextField fx:id="first" disable="true" editable="false" layoutX="55.0" layoutY="42.0" prefHeight="25.0" prefWidth="60.0" />
+      <TextField fx:id="second" disable="true" editable="false" layoutX="55.0" layoutY="72.0" prefHeight="25.0" prefWidth="60.0" visible="false" />
+      <TextField fx:id="third" disable="true" editable="false" layoutX="55.0" layoutY="101.0" prefHeight="25.0" prefWidth="60.0" visible="false" />
       <Label fx:id="currentText" alignment="CENTER" contentDisplay="CENTER" layoutX="23.0" layoutY="367.0" prefHeight="80.0" prefWidth="124.0" text="J1" textAlignment="CENTER" wrapText="true">
          <font>
             <Font name="System Bold" size="30.0" />
@@ -35,5 +35,22 @@
          </image>
       </ImageView>
       <TextField fx:id="currentbrains" disable="true" editable="false" layoutX="654.0" layoutY="34.0" prefHeight="43.0" prefWidth="74.0" />
+      <Label fx:id="greenDice" layoutX="271.0" layoutY="135.0" text="12" textFill="#03eb0f">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="yellowDice" layoutX="336.0" layoutY="135.0" text="12" textFill="#e8eb05">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="redDice" layoutX="403.0" layoutY="135.0" text="12" textFill="#eb0707">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label fx:id="alerte" layoutX="424.0" layoutY="47.0" prefHeight="72.0" prefWidth="168.0" text="Votre tour s'est terminé car :" textFill="#fc0000" visible="false" wrapText="true" />
+      <Button fx:id="scores" layoutX="606.0" layoutY="391.0" mnemonicParsing="false" text="Passer aux scores" visible="false" />
    </children>
 </AnchorPane>
