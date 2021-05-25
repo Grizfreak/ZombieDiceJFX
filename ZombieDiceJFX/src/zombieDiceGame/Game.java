@@ -102,7 +102,6 @@ public class Game {
 		System.out.println(d3+" | "+face3);
 		if(face1.equals(symbole.CERVEAU.toString())) {
 			cerveaux_en_cours++;
-			tas.removeDice(d1);
 		}
 		if(face1.equals(symbole.FUSIL.toString())) {
 			fusils_en_cours++;
@@ -114,7 +113,6 @@ public class Game {
 		}
 		if(face2.equals(symbole.CERVEAU.toString())) {
 			cerveaux_en_cours++;
-			tas.removeDice(d2);
 		}
 		if(face2.equals(symbole.FUSIL.toString())) {
 			fusils_en_cours++;
@@ -126,7 +124,6 @@ public class Game {
 		}
 		if(face3.equals(symbole.CERVEAU.toString())) {
 			cerveaux_en_cours++;
-			tas.removeDice(d3);
 		}
 		if(face3.equals(symbole.FUSIL.toString())) {
 			fusils_en_cours++;
