@@ -17,10 +17,6 @@ public class Game {
 	private int cerveaux_en_cours;
 	private ArrayList<Dice> des_empreintes;
 	private int nbPlayers=0;
-	public Player getCurrentPlayer() {
-		return currentPlayer;
-	}
-
 	private Player currentPlayer;
 	private Dice d1;
 	private Dice d2;
@@ -34,13 +30,13 @@ public class Game {
 		des_empreintes= new ArrayList<Dice>();
 		this.difficulty=difficulty;
 		this.j1=j1;
-		if(j1 !=null)nbPlayers++;
+		if(j1 !=null)nbPlayers = getNbPlayers() + 1;
 		this.j2=j2;
-		if(j2 !=null)nbPlayers++;
+		if(j2 !=null)nbPlayers = getNbPlayers() + 1;
 		this.j3=j3;
-		if(j3 !=null)nbPlayers++;
+		if(j3 !=null)nbPlayers = getNbPlayers() + 1;
 		this.j4=j4;
-		if(j4 !=null)nbPlayers++;
+		if(j4 !=null)nbPlayers = getNbPlayers() + 1;
 		currentPlayer=j1;
 	}
 	public Game(String difficulty,Player j1,Player j2) {
@@ -221,5 +217,14 @@ public class Game {
 			if(tas.getDice(i) instanceof RedDice)nbRedDice++;
 		}
 		return nbRedDice;
+	}
+	public String getDifficulty() {
+		return difficulty;
+	}
+	public int getNbPlayers() {
+		return nbPlayers;
+	}
+	public Player getCurrentPlayer() {
+		return currentPlayer;
 	}
 }
