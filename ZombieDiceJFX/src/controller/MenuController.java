@@ -15,6 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import zombieDiceGame.Difficulty;
 
@@ -121,5 +122,15 @@ public class MenuController implements Initializable{
 		Main.actualRoot=root;
 		Scene next = new Scene(root);
 		thisStage.setScene(next);
+	}
+	@FXML private void gotoHelp() throws IOException {
+		Parent saved = FXMLLoader.load(getClass().getResource("/view/Rules.fxml"));
+		Main.actualRoot=saved;
+		Scene save = new Scene(saved);
+		Stage help = new Stage();
+		help.initModality(Modality.APPLICATION_MODAL);
+		help.setScene(save);
+		help.show();
+		
 	}
 }

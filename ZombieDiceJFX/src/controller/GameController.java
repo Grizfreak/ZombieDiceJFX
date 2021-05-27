@@ -102,8 +102,6 @@ public class GameController implements Initializable{
 		System.out.println("Passé");
 		current.setText(String.valueOf(j1.getCerveaux()));
 		first.setText(String.valueOf(j2.getCerveaux()));
-		//first_pump.setImage(new Image(("file:src/ZombieDicePic/shotgun.png")));
-		//second_pump.setImage(new Image("file:./src/ZombieDicePic/shotgun.png"));
 	}
 
 	@FXML public void playturn() {
@@ -130,12 +128,12 @@ public class GameController implements Initializable{
 		String f1 = (String) dejete[3];
 		String f2 = (String) dejete[4];
 		String f3 = (String) dejete[5];
-		String path=setDe(d1,f1);
-		String path2=setDe(d2,f2);
-		String path3=setDe(d3,f3);
-		gc.drawImage(new Image(path),0,0, 100, 100);
-		gc.drawImage(new Image(path2), 150, 0, 100, 100);
-		gc.drawImage(new Image(path3), 300, 0, 100, 100);
+		URL path=setDe(d1,f1);
+		URL path2=setDe(d2,f2);
+		URL path3=setDe(d3,f3);
+		gc.drawImage(new Image(path.toString()),0,0, 100, 100);
+		gc.drawImage(new Image(path2.toString()), 150, 0, 100, 100);
+		gc.drawImage(new Image(path3.toString()), 300, 0, 100, 100);
 		setCerveaux();
 		setFusil();
 		greenDice.setText(String.valueOf(game.getGreenDice()));
@@ -146,7 +144,7 @@ public class GameController implements Initializable{
 	}
 	@FXML private void passerTour() {
 		if(nbPlayers==2) {
-			if(j1.isFinishing()||j2.isFinishing()) {
+			if(j1.isFinishing()&& j2.isFinishing()) {
 				game.getCurrentPlayer().setHasFinished(true);
 				finJeu();
 				return;
@@ -154,7 +152,7 @@ public class GameController implements Initializable{
 
 		}
 		else if(nbPlayers==3) {
-			if(j1.isFinishing()||j2.isFinishing()||j3.isFinishing()) {
+			if(j1.isFinishing()&&j2.isFinishing()&&j3.isFinishing()) {
 				game.getCurrentPlayer().setHasFinished(true);
 				finJeu();
 				return;
@@ -162,7 +160,7 @@ public class GameController implements Initializable{
 
 		}
 		else {
-			if(j1.isFinishing()||j2.isFinishing()||j3.isFinishing()||j4.isFinishing()) {
+			if(j1.isFinishing()&&j2.isFinishing()&&j3.isFinishing()&&j4.isFinishing()) {
 				game.getCurrentPlayer().setHasFinished(true);
 				finJeu();
 				return;
@@ -240,48 +238,48 @@ public class GameController implements Initializable{
 		third_pump.setImage(null);
 		System.out.println(game.getFusils_en_cours());
 		if(game.getFusils_en_cours()>=1) {
-			first_pump.setImage(new Image("file:./src/ZombieDicePic/shotgun.png"));
+			first_pump.setImage(new Image(getClass().getResource("/ZombieDicePic/shotgun.png").toString()));
 		}
 		if(game.getFusils_en_cours()>=2) {
-			second_pump.setImage(new Image("file:./src/ZombieDicePic/shotgun.png"));
+			second_pump.setImage(new Image(getClass().getResource("/ZombieDicePic/shotgun.png").toString()));
 		}
 		if(game.getFusils_en_cours()==3) {
-			third_pump.setImage(new Image("file:./src/ZombieDicePic/shotgun.png"));
+			third_pump.setImage(new Image(getClass().getResource("/ZombieDicePic/shotgun.png").toString()));
 		}
 	}
-	public String setDe(Dice d, String f) {
-		String path;
+	public URL setDe(Dice d, String f) {
+		URL path;
 		if(d instanceof GreenDice) {
 			if(f.equals(symbole.CERVEAU.toString())) {
-				path = "file:./src/ZombieDicePic/cerveauG.png";
+				path = getClass().getResource("/ZombieDicePic/cerveauG.png");
 			}
 			else if(f.equals(symbole.EMPREINTE.toString())) {
-				path = "file:./src/ZombieDicePic/empreinteG.png";
+				path = getClass().getResource("/ZombieDicePic/empreinteG.png");
 			}
 			else {
-				path = "file:./src/ZombieDicePic/shotgunG.png";
+				path = getClass().getResource("/ZombieDicePic/shotgunG.png");
 			}
 		}
 		else if(d instanceof RedDice) {
 			if(f.equals(symbole.CERVEAU.toString())) {
-				path = "file:./src/ZombieDicePic/cerveauR.png";
+				path = getClass().getResource("/ZombieDicePic/cerveauR.png");
 			}
 			else if(f.equals(symbole.EMPREINTE.toString())) {
-				path = "file:./src/ZombieDicePic/empreinteR.png";
+				path = getClass().getResource("/ZombieDicePic/empreinteR.png");
 			}
 			else {
-				path = "file:./src/ZombieDicePic/shotgunR.png";
+				path = getClass().getResource("/ZombieDicePic/shotgunR.png");
 			}
 		}
 		else {
 			if(f.equals(symbole.CERVEAU.toString())) {
-				path = "file:./src/ZombieDicePic/cerveauJ.png";
+				path = getClass().getResource("/ZombieDicePic/cerveauJ.png");
 			}
 			else if(f.equals(symbole.EMPREINTE.toString())) {
-				path = "file:./src/ZombieDicePic/empreinteJ.png";
+				path = getClass().getResource("/ZombieDicePic/empreinteJ.png");
 			}
 			else {
-				path = "file:./src/ZombieDicePic/shotgunJ.png";
+				path = getClass().getResource("/ZombieDicePic/shotgunJ.png");
 			}
 		}
 		return path;

@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="756.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ScoreController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="464.0" prefWidth="756.0" style="-fx-background-color: D4D4D4;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ScoreController">
    <children>
       <Label fx:id="first" layoutX="316.0" layoutY="112.0" text="GAGNANT">
          <font>
@@ -69,5 +68,10 @@
             <Font size="16.0" />
          </font>
       </Button>
+      <ImageView fitHeight="85.0" fitWidth="200.0" layoutX="454.0" layoutY="8.0">
+         <image>
+            <Image url="@../ZombieDicePic/zombie.gif" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
