@@ -17,6 +17,7 @@ public class rulesController implements Initializable {
 	}
 	@FXML public void exit() {
 		Stage stage = (Stage) Main.actualRoot.getScene().getWindow();
+		
 		stage.close();
 	}
 

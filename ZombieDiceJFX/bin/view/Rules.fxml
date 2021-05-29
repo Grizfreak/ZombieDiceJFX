@@ -4,10 +4,9 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="304.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.rulesController">
    <children>
       <Button layoutX="126.0" layoutY="445.0" mnemonicParsing="false" onAction="#exit" text="Retour" />
-      <TextArea layoutX="52.0" layoutY="23.0" prefHeight="375.0" prefWidth="200.0" style="-fx-wrap-text: true;" text="Chaque joueur joue à tour de rôle jusqu'à ce que :&#10;- Il n'y aie plus aucun dé jouable&#10;&#10;- Le joueur à pioché 3 fusils à pompe&#10;&#10;A la fin de chaque tour, le nombre de cerveaux gagnés est ajouté au nombres de cerveaux du joueur sauf si celui-ci a pioché 3 fusils.&#10;&#10;Une fois qu'un joueur a atteint 13 cerveaux, tous les joueurs ont encore un tour de jeu avant que le jeu s'arrête.&#10;&#10;&#10;Amusez-vous bien et ne vous bouffez pas la cervelle !&#10;@Grizfreak" />
+      <TextArea disable="true" layoutX="52.0" layoutY="23.0" prefHeight="375.0" prefWidth="200.0" style="-fx-wrap-text: true;" text="Chaque joueur joue à tour de rôle jusqu'à ce que :&#10;- Il n'y aie plus aucun dé jouable&#10;&#10;- Le joueur à pioché 3 fusils à pompe&#10;&#10;A la fin de chaque tour, le nombre de cerveaux gagnés est ajouté au nombres de cerveaux du joueur sauf si celui-ci a pioché 3 fusils.&#10;&#10;Une fois qu'un joueur a atteint 13 cerveaux, tous les joueurs ont encore un tour de jeu avant que le jeu s'arrête.&#10;&#10;&#10;Amusez-vous bien et ne vous bouffez pas la cervelle !&#10;@Grizfreak" />
    </children>
 </AnchorPane>
