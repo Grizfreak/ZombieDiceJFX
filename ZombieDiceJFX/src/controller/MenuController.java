@@ -39,6 +39,7 @@ public class MenuController implements Initializable{
 	static String namej2;
 	static String namej3;
 	static String namej4;
+	static Parent saved;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		namej1=null;
@@ -123,8 +124,7 @@ public class MenuController implements Initializable{
 		thisStage.setScene(next);
 	}
 	@FXML private void gotoHelp() throws IOException {
-		Parent saved = FXMLLoader.load(getClass().getResource("/view/Rules.fxml"));
-		Main.actualRoot=saved;
+		saved = FXMLLoader.load(getClass().getResource("/view/Rules.fxml"));
 		Scene save = new Scene(saved);
 		Stage help = new Stage();
 		help.initModality(Modality.APPLICATION_MODAL);
