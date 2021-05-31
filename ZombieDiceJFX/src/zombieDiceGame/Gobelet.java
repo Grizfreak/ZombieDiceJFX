@@ -7,7 +7,6 @@ public class Gobelet {
 	public static final int FINAL_NB_DICE=13;
 	private ArrayList<Dice> dices;
 	private ArrayList<Dice> unusable_dices;
-	//TODO add difficulty
 	public Gobelet(String difficult) {
 		int i;
 		unusable_dices = new ArrayList<Dice>();

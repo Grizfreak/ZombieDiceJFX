@@ -60,7 +60,6 @@ public class GameController implements Initializable{
 	public static boolean autoFinishedTurn=false;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		System.out.println("Init");
 		difficulty=MenuController.difficulty;
 		nbPlayers=MenuController.nbPlayers;

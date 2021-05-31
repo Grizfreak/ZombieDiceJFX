@@ -41,7 +41,6 @@ public class MenuController implements Initializable{
 	static String namej4;
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
 		namej1=null;
 		namej2=null;
 		namej3=null;

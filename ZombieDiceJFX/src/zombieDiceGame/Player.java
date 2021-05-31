@@ -12,7 +12,6 @@ public class Player {
 	}
 
 	public void addCerveaux(int cerveaux) {
-		// TODO Auto-generated method stub
 		this.cerveaux+=cerveaux;
 	}
 

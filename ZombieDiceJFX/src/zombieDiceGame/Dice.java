@@ -39,5 +39,4 @@ public class Dice {
 		Random rando = new Random();
 		return faces.get(rando.nextInt(NB_FACES));
 	}
-	//TODO shuffle opir on s'en fout
 	}
